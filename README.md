@@ -1,6 +1,3 @@
-- python 3
-- colorama (pip install colorama)
-
 # Logger
 
 Simple logger class, which displays information during the execution of a funcion.
@@ -51,4 +48,4 @@ You should have this output:
 
 ## Authors
 
-- **Nicolas Pons** - _Initial work_ - [niicolaspons](https://github.com/nicolaspons)
+- **Nicolas Pons** - [nicolaspons](https://github.com/nicolaspons)
