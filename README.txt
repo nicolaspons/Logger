@@ -1,2 +1,0 @@
-- python 3
-- colorama (pip install colorama)
