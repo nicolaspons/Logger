@@ -53,24 +53,37 @@ class Logger():
         self._t = None
         self._w = None
 
-    def __call__(self, s: str, target: Callable, args: list):
-        """ Calls a given function and displays a string s
+    def __call__(self, s: str, target: Callable = None, args: list = None, mode: str = None):
+        """ Calls a given function if provided and displays a string s with a given mode
 
         Parameters
         ----------
         s : str
             The string which will be displayed
-        func : function
+        target : function
             The function to execute
+        args: list
+            The function's arguments
+        mode: str
+            The displaying mode
         """
-        self._t = ThreadLogger(target=target, args=args)
-        self._t.start()
-        self._w = ThreadLogger(target=self.__waitingAnimation, args=(s,))
-        self._w.start()
-        res = self._t.join()
-        self._w.do_run = False
-        self._w.join()
-        return res
+        if target is not None:
+            self._t = ThreadLogger(target=target, args=args)
+            self._t.start()
+            self._w = ThreadLogger(target=self.__waitingAnimation, args=(s,))
+            self._w.start()
+            res = self._t.join()
+            self._w.do_run = False
+            self._w.join()
+            return res
+
+        else:
+            if mode is None or mode.upper() == 'INFO':
+                print(Fore.GREEN + '[ INFO ] ' + Fore.RESET + s)
+            else:
+                print(Fore.BLUE +
+                      '[ {} ] '.format(mode.upper()) + Fore.RESET + s)
+            return None
 
     def __waitingAnimation(self, s: str):
         """ Runs a simple animation with a given str `s` during the execution of the function `func`
