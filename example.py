@@ -28,4 +28,6 @@ def train():
 
 if __name__ == '__main__':
     log = TrainLogger(nb_epochs=10)
+    log('info log', mode='INFO')
+    log('test log', mode='test')
     train()
